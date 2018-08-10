@@ -22,4 +22,6 @@ COPY rpm-gpg-keys/* /etc/pki/rpm-gpg/
 
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY*
 
+RUN bash download_mirror.sh
+
 ENTRYPOINT ["/bin/bash"]

@@ -25,6 +25,10 @@ RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY*
 COPY . /temp/qfc
 WORKDIR /temp/qfc
 RUN chmod +x ./dl_rpms.sh
+RUN chmod +x ./dl_other_from_centos_repo.sh
+RUN chmod +x ./show_imported_rpm_gpg_keys.sh
+RUN chmod +x ./starlingx_add_pkgs.sh
+
 RUN bash download_mirror.sh
 
 ENTRYPOINT ["/bin/bash"]

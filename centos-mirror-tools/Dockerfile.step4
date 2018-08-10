@@ -1,0 +1,34 @@
+## mirror download container
+
+FROM registry.cn-hangzhou.aliyuncs.com/jaydomchen/centos-mirror-tools:step4
+
+WORKDIR /localdisk
+
+#ENV http_proxy	"http://your.actual_http_proxy.com:your_port"
+#ENV https_proxy "https://your.actual_https_proxy.com:your_port"
+#ENV ftp_proxy "http://your.actual_ftp_proxy.com:your_port"
+
+#RUN echo "proxy=$http_proxy" >> /etc/yum.conf && \
+#    echo -e "export http_proxy=$http_proxy\nexport https_proxy=$https_proxy\n\
+#export ftp_proxy=$ftp_proxy" >> /root/.bashrc
+
+RUN yum install -y epel-release sudo vim-enhanced net-tools git \
+        /usr/bin/yumdownloader rpm-build rpm-sign deltarpm wget bind \
+        bind-utils && rm /etc/yum.repos.d/CentOS-Sources.repo \
+        /etc/yum.repos.d/epel.repo
+
+COPY yum.repos.d/* /etc/yum.repos.d/
+COPY rpm-gpg-keys/* /etc/pki/rpm-gpg/
+
+RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY*
+
+COPY . /temp/qfc
+WORKDIR /temp/qfc
+RUN chmod +x ./dl_rpms.sh
+RUN chmod +x ./dl_other_from_centos_repo.sh
+RUN chmod +x ./show_imported_rpm_gpg_keys.sh
+RUN chmod +x ./starlingx_add_pkgs.sh
+
+RUN bash download_mirror_step4.sh
+
+ENTRYPOINT ["/bin/bash"]

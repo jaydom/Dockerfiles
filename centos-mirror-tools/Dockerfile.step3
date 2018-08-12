@@ -12,6 +12,9 @@ WORKDIR /localdisk
 #    echo -e "export http_proxy=$http_proxy\nexport https_proxy=$https_proxy\n\
 #export ftp_proxy=$ftp_proxy" >> /root/.bashrc
 
+COPY . /temp/qfc
+WORKDIR /temp/qfc
+
 RUN bash download_mirror_step3.sh
 
 ENTRYPOINT ["/bin/bash"]

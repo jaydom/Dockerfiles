@@ -1,0 +1,22 @@
+## mirror download container
+
+FROM registry.cn-hangzhou.aliyuncs.com/jaydomchen/centos-mirror-tools:step4
+
+WORKDIR /localdisk
+
+#ENV http_proxy	"http://your.actual_http_proxy.com:your_port"
+#ENV https_proxy "https://your.actual_https_proxy.com:your_port"
+#ENV ftp_proxy "http://your.actual_ftp_proxy.com:your_port"
+
+#RUN echo "proxy=$http_proxy" >> /etc/yum.conf && \
+#    echo -e "export http_proxy=$http_proxy\nexport https_proxy=$https_proxy\n\
+#export ftp_proxy=$ftp_proxy" >> /root/.bashrc
+
+COPY . /temp/qfc
+WORKDIR /temp/qfc
+
+RUN chmod +x  dl_tarball.sh
+RUN cat output/3rd-centos_rpms_missing_L1.txt output/3rd_rpms_missing_L1.txt output/3rd_srpms_missing_L1.txt output/centos_rpms_missing_L1.txt output/centos_srpms_missing_L1.txt
+RUN cat output/3rd_rpms_fail_move_L1.txt output/3rd_srpms_fail_move_L1.txt output/centos_rpms_fail_move_L1.txt output/centos_srpms_fail_move_L1.txt
+
+ENTRYPOINT ["/bin/bash"]

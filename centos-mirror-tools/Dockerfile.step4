@@ -1,6 +1,6 @@
 ## mirror download container
 
-FROM registry.cn-hangzhou.aliyuncs.com/jaydomchen/centos-mirror-tools:step4
+FROM registry.cn-hangzhou.aliyuncs.com/jaydomchen/centos-mirror-tools:step3
 
 WORKDIR /localdisk
 

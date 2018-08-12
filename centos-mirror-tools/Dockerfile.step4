@@ -15,6 +15,7 @@ WORKDIR /localdisk
 COPY . /temp/qfc
 WORKDIR /temp/qfc
 
+RUN chmod +x  dl_tarball.sh
 RUN bash download_mirror_step4.sh
 
 ENTRYPOINT ["/bin/bash"]

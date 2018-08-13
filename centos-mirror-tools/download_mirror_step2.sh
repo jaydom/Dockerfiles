@@ -26,7 +26,7 @@ need_file tarball-dl.lst mvn-artifacts.lst
 
 echo "step #2: start 1st round of downloading RPMs and SRPMs with L1 match criteria..."
 #download RPMs/SRPMs from CentOS repos by "yumdownloader"
-
+rpm_downloader="./dl_rpms.sh"
 $rpm_downloader ./rpms_from_centos_repo.lst L1 centos | tee ./logs/log_download_rpms_from_centos_L1.txt
 
 if [ $? == 0 ]; then

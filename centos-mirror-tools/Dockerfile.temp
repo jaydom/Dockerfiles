@@ -1,0 +1,4 @@
+FROM centos:7.4.1708
+
+RUN yum install -y wget 
+RUN wget https://github.com/cisco-system-traffic-generator/trex-stateless-gui/releases/download/v4.4.2/trex-stateless-gui-v4.4.2-0-g617e9d6.exe

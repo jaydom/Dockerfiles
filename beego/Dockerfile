@@ -6,6 +6,7 @@ MAINTAINER chenqianfeng jaydom912@126.com
 
 # Install beego & bee
 RUN go get github.com/astaxie/beego
+RUN go get github.com/astaxie/beego/orm
 RUN go get github.com/beego/bee
 RUN go get github.com/casbin/casbin
 RUN go get github.com/casbin/beego-orm-adapter

@@ -11,6 +11,7 @@ RUN go get github.com/beego/bee
 RUN go get github.com/casbin/casbin
 RUN go get github.com/jaydom/beego-orm-adapter
 RUN go get github.com/mattn/go-sqlite3
+RUN go get github.com/smartystreets/goconvey/convey
 EXPOSE 8080
 
 CMD ["bee","run"]
